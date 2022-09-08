@@ -1,16 +1,17 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+    environment {
+            GITHUB_CREDENTIALS = credentials('github-credentials-id')
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
+
+    stages {
+        stage('Checkout from Github') {
+           git url: 'https://github.com/bjjd-microservices/config-server.git' , credentialsId: $GITHUB_CREDENTIALS , branch: 'master'
+        }
+        stage('Build Project') {
+            def mavenHome= tool name: "Maven", type: "maven"
+            sh "${mavenHome}/bin/mvn clean install -DskipTests"
         }
         stage('Deploy') {
             steps {
