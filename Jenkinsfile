@@ -1,10 +1,11 @@
 pipeline {
     agent any
-
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
-        }
-
+    }
+    tools {
+        maven 'Maven'
+     }
     stages {
         stage('Checkout from Github') {
             steps{
@@ -12,9 +13,8 @@ pipeline {
             }
         }
         stage('Build Project') {
-            def mavenHome= tool name: "Maven", type: "maven"
             steps{
-                sh "${mavenHome}/bin/mvn clean install -DskipTests"
+                sh "mvn clean install -DskipTests"
             }
         }
         stage('Deploy') {
