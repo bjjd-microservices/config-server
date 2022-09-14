@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Build Project') {
             steps{
-            withMaven(maven:'maven') {
-                    sh 'mvn clean install -DskipTests'
-                }
+            echo 'Deploying....'
             }
         }
         stage('Deploy') {
