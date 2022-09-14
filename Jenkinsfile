@@ -13,7 +13,8 @@ pipeline {
         }
         stage('Build Project') {
             steps{
-            echo 'Deploying....'
+            def mavenHome= tool name: "Maven", type: "maven"
+            sh "${mavenHome}/bin/mvn clean install -DskipTests"
             }
         }
         stage('Deploy') {
