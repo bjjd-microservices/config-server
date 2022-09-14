@@ -13,8 +13,9 @@ pipeline {
         }
         stage('Build Project') {
             steps{
-            def mavenHome= tool name: "Maven", type: "maven"
-            sh "${mavenHome}/bin/mvn clean install -DskipTests"
+            withMaven(maven:'maven') {
+                    sh 'mvn clean install -DskipTests'
+                }
             }
         }
         stage('Deploy') {
