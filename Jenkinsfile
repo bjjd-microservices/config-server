@@ -4,7 +4,7 @@ pipeline {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
     }
     tools {
-        maven 'Maven'
+        maven 'M3'
      }
     stages {
         stage('Checkout from Github') {
