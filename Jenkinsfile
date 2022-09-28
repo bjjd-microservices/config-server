@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
+            def buildNumber = BUILD_NUMER
     }
     tools {
         maven 'M3'
@@ -19,7 +20,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                 sh "docker build -t rajivbansal2981/config-server:0.0.1-RELEASE ."
+                 sh "docker build -t rajivbansal2981/config-server:${buildNumber} ."
             }
         }
         stage('Deploy') {
