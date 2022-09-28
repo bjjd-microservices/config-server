@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    def buildNumber = BUILD_NUMBER
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
     }
@@ -8,6 +7,7 @@ pipeline {
         maven 'M3'
      }
     stages {
+        def buildNumber = BUILD_NUMBER
         stage('Checkout from Github') {
             steps{
              git url: 'https://github.com/bjjd-microservices/config-server.git' , branch: 'master'
