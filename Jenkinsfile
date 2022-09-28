@@ -17,6 +17,11 @@ pipeline {
                 sh "mvn clean install -DskipTests"
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                 sh "docker build -t rajivbansal2981/config-server:0.0.1-RELEASE ."
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
@@ -24,3 +29,4 @@ pipeline {
         }
     }
 }
+
