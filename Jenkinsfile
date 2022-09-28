@@ -1,12 +1,12 @@
 pipeline {
     agent any
+    def buildNumber = BUILD_NUMBER
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
     }
     tools {
         maven 'M3'
      }
-     def buildNumber = BUILD_NUMBER
     stages {
         stage('Checkout from Github') {
             steps{
