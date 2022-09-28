@@ -3,10 +3,10 @@ pipeline {
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
     }
-    def buildNumber = BUILD_NUMBER
     tools {
         maven 'M3'
      }
+     def buildNumber = BUILD_NUMBER
     stages {
         stage('Checkout from Github') {
             steps{
