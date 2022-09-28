@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
-            def buildNumber = BUILD_NUMER
+            def buildNumber = BUILD_NUMBER
     }
     tools {
         maven 'M3'
