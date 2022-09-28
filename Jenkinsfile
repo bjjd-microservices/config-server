@@ -7,7 +7,6 @@ pipeline {
         maven 'M3'
      }
     stages {
-        def buildNumber = BUILD_NUMBER
         stage('Checkout from Github') {
             steps{
              git url: 'https://github.com/bjjd-microservices/config-server.git' , branch: 'master'
@@ -20,7 +19,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                 sh "docker build -t rajivbansal2981/config-server:${buildNumber} ."
+                 sh "docker build -t rajivbansal2981/config-server:${BUILD_NUMBER} ."
             }
         }
         stage('Deploy') {
