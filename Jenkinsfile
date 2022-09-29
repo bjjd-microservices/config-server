@@ -17,6 +17,11 @@ pipeline {
                 sh "mvn clean install -DskipTests"
             }
         }
+        stage('Remove existing Docker Image') {
+             steps {
+                 sh "docker rmi $(docker images | grep 'rajivbansal2981/config-server')"
+             }
+        }
         stage('Build Docker Image') {
             steps {
                  sh "docker build -t rajivbansal2981/config-server:${BUILD_NUMBER} ."
