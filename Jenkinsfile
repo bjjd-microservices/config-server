@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
+            def dockerImage = "rajivbansal2981/config-server"
     }
     tools {
         maven 'M3'
@@ -19,7 +20,7 @@ pipeline {
         }
         stage('Remove existing Docker Image') {
              steps {
-                 sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server')"
+                 sh "docker rmi -f ${dockerImage}"
              }
         }
         stage('Build Docker Image') {
