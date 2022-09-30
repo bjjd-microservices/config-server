@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
             GITHUB_CREDENTIALS = credentials('github-credentials-id')
-            def dockerImage = "rajivbansal2981/config-server"
+            def dockerImage = 'rajivbansal2981/config-server'
     }
     tools {
         maven 'M3'
