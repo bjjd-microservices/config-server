@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Remove existing Docker Image') {
              steps {
-                 sh "docker rmi -f ${dockerImage}"
+                 sh "docker rmi -f rajivbansal2981/config-server"
              }
         }
         stage('Build Docker Image') {
