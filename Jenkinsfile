@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Remove existing Docker Image') {
              steps {
-                 sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server')&>/dev/null || true"
+                 sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server') &> /dev/null || true"
              }
         }
         stage('Build Docker Image') {
