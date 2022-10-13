@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy Docker application in Docker Deployment Server') {
             steps {
                      sh "docker rm -f config-server || true"
-                     sh "docker run -d -p 8888 --name config-server rajivbansal2981/config-server:${BUILD_NUMBER}"
+                     sh "docker run --name config-server rajivbansal2981/config-server:${BUILD_NUMBER}"
             }
         }
     }
