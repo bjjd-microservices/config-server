@@ -12,16 +12,16 @@ pipeline {
              git url: 'https://github.com/bjjd-microservices/config-server.git' , branch: 'master'
             }
         }
+        stage('Remove existing Docker Image') {
+                     steps {
+                         sh "docker rm -f config-server || true"
+                         sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server') &> /dev/null || true"
+                     }
+        }
         stage('Build Project') {
             steps{
                 sh "mvn clean install -DskipTests"
             }
-        }
-        stage('Remove existing Docker Image') {
-             steps {
-                 sh "docker rm -f config-server || true"
-                 sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server') &> /dev/null || true"
-             }
         }
         stage('Build Docker Image') {
             steps {
