@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Remove existing Docker Image') {
              steps {
+                 sh "docker rm -f config-server || true"
                  sh "docker rmi \$(docker images | grep 'rajivbansal2981/config-server') &> /dev/null || true"
              }
         }
@@ -37,7 +38,6 @@ pipeline {
                 }
         stage('Deploy Docker application in Docker Deployment Server') {
             steps {
-                     sh "docker rm -f config-server || true"
                      sh "docker run --name config-server rajivbansal2981/config-server:${BUILD_NUMBER}"
             }
         }
