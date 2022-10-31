@@ -36,7 +36,7 @@ pipeline {
                          sh "docker push rajivbansal2981/config-server:${BUILD_NUMBER}"
                     }
                 }
-        stage('Deploy Docker application in Docker Deployment Server') {
+        stage('Deploy Docker application in Jenkin Server') {
             steps {
                      sh "docker run -d -p 8888:8888 --name config-server rajivbansal2981/config-server:${BUILD_NUMBER}"
             }
