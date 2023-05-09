@@ -7,6 +7,7 @@ pipeline {
         maven 'M3'
      }
     stages {
+
         stage('Checkout from Github') {
             steps{
              git url: 'https://github.com/bjjd-microservices/config-server.git' , branch: 'master'
